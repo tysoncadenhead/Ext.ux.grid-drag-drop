@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+	<head>
+		<!-- EXT Base -->
+		<link rel="stylesheet" type="text/css" href="http://tdg-i.com/ext3/resources/css/ext-all.css" />
+		<script type="text/javascript" src="http://tdg-i.com/ext3/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" src="http://tdg-i.com/ext3/ext-all.js"></script>
+		
+		<!-- This enables draging and dropping between Grids... I didn't write it, but it is very much needed -->
+		<script type="text/javascript" src="js/grid-drag-drop-row-order.js"></script>
+		
+		<!-- Drag and Drop Scripts -->
+		<link rel="stylesheet" type="text/css" href="css/grid-drag-drop.css" />
+		<script type="text/javascript" src="js/grid-drag-drop.js"></script>
+		
+		<!-- User Scripts -->
+		<script type="text/javascript">
+			
+			// This is the grid that will go on the left							
+			var leftGrid = new Ext.grid.GridPanel({
+				width: 200,
+				store: new Ext.data.ArrayStore({
+					fields: [
+						{ name: 'firstname'}, 
+						{ name: 'lastname'},
+						{ name: 'type' }
+					],
+					data: [
+						['Darth', 'Vader', 'Bad Guy'],
+						['Han', 'Solo', 'Good Guy'],
+						['Jabba', 'the Hutt', 'Bad Guy']
+					]
+				}),
+				columns: [
+					{
+						header: 'First Name',
+						dataIndex: 'firstname',
+						width: 190
+					}
+				]
+			});
+			
+			// This is the grid that will go on the right
+			var rightGrid = new Ext.grid.GridPanel({
+				store: new Ext.data.ArrayStore({
+					fields: [
+						{ name: 'firstname'}, 
+						{ name: 'lastname'},
+						{ name: 'type' }
+					],
+					data: [
+						['Luke', 'Skywalker', 'Good Guy'],
+						['Ben', 'Kenobi', 'Good Guy']
+					]
+				}),
+				autoExpandColumn: 'type',
+				columns: [
+					{
+						header: 'First Name',
+						dataIndex: 'firstname'
+					},
+					{
+						header: 'Last Name',
+						dataIndex: 'lastname'
+					},
+					{
+						header: 'Type',
+						dataIndex: 'type',
+						id: 'type'
+					}
+				]
+			});
+			
+			// This is where we create the Ext.ux.DragDropGridPanels
+			// Make sure to include the leftGrid and rightGrid params - this will not work without them!
+			var DragDropGridPanels = new Ext.ux.DragDropGridPanels({
+				leftGrid: leftGrid,
+				rightGrid: rightGrid,
+				height: 300
+			});
+			
+			// Render the DragDropGridPanels when the DOM is ready
+			Ext.onReady(function(){			
+				DragDropGridPanels.render(document.body);	
+			});
+		</script>
+	</head>
+	<body id="body"></body>
+</html>

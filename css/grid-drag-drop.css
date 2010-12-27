@@ -1,0 +1,27 @@
+.ext-dd-arrow {
+	background-repeat: no-repeat;
+	margin: 2px;
+	cursor: pointer;
+	height: 16px;
+	width: 16px;
+	padding: 0px;
+	overflow: none;
+}
+
+.ext-dd-arrow * {
+	background: none;
+	height: auto;
+}
+
+.ext-dd-arrow-right {
+	background-image: url('../img/right2.gif');
+}
+
+
+.ext-dd-arrow-left {
+	background-image: url('../img/left2.gif');
+}
+
+.grid-drag-drop-center, .grid-drag-drop-center * {
+	border: 0px;
+}
